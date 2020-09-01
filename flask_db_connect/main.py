@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, request
 from DB import init_DB as db
 
 app = Flask(__name__)
@@ -10,10 +10,6 @@ def before_request():
 @app.teardown_request
 def teardown_request(exception):
     db.close_db()
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 def init_app():
     #DB 초기화
