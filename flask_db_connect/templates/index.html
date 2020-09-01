@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap-4.5.0-dist/css/bootstrap.min.css')}}">
+    <script src="{{url_for('static', filename='js/login.js')}}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <section id="intro_section" class="col-7">
+                    <div id="intro">       
+                        <!--<img src="{{url_for('static', filename='img/onsen.jpg')}}" alt="온센">-->
+                    </div>
+                </section>
+                <section id="login_section" class="col-5">
+                    <form id="login" method="POST">
+                        <div class="form-group" style="display: block;">
+                            <label class="input-label" for="id">ID</label>
+                            <input class="login_input" type="text" name="id" id="id">
+                        </div>
+                        <div class="form-group" style="display: block;">
+                            <label class="input-label" for="pw">PW</label>
+                            <input class="login_input" type="password" name="pw" id="pw">
+                        </div>
+                        <div class="msg">{{ msg }}</div>                    
+                        <input type="submit" value="로그인">
+                        <p id="demo"></p>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
