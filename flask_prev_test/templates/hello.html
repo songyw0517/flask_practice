@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='hello.css')}}">
+</head>
+<body>
+  {% if data %}
+      {{data}}
+  {% endif %}
+  <form action="/" method="get">
+    <label for="keyword1">첫번째 키워드</label>
+    <input type="text" name='keyword1' id="keyword1">
+    <label for="keyword2">두번재 키워드</label>
+    <input type="text" name='keyword2' id="keyword2">
+    <button type="submit">검색</button>
+
+  </form>
+
+  <div id="visual_result">
+    {% if data%}
+      {% for k, v in data.items() %}<div class="bar" value="{{v}}">{{k}}</div>{% endfor %}<!-- 아래로 내려서 반복문을 돌릴 경우 여백이 생기기 때문에 붙여서 진행한다. -->
+    {% endif %}
+  </div>
+  <script>
+    var bars = document.querySelectorAll('.bar');
+    var total = 0;
+    console.log(bars);
+
+    for (var i=0; i<bars.length; i++){
+      total += parseInt(bars[i].getAttribute('value'));
+      
+    };
+    console.log('total = '+ total);
+
+    //반복을 통해서 div의 width를 설정해준다.
+    for (var i=0; i<bars.length; i++){
+      w = bars[i].getAttribute('value');
+      console.log(w);
+      bars[i].style.width = parseInt(w)/total * 100 +'%';
+    };
+
+  </script>
+</body>
+</html>
