@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="function">
+        <div id="insert">
+            <h1>INSERT</h1>
+            <form method='POST'>
+                <div class="form-group">
+                    <lable class="input-label" for=id>ID</lable>
+                    <input type="text" class="input" name="id">
+                </div>
+                <div class="form-group">
+                    <lable class="input-label" for=pw>PW</lable>
+                    <input type="text" class="input" name="pw">
+                </div>
+                <div class="msg">{{ msg }}</div>
+                <input type="submit" formaction = '/insert' value="삽입">
+
+            </form>
+        </div>
+    </div>
+
+
+    <div class="function">
+        <div id="delete">
+            <h1>delete</h1>
+            <form action='/delete' method='POST'>
+                <div class="form-group">
+                    <lable class="input-label" for=id>ID</lable>
+                    <input type="text" class="input" name="id">
+                </div>
+                <div class="msg">{{ del_data }}</div>
+                <input type="submit" value="삭제">
+            </form>
+        </div>
+    </div>
+    <div class="function">
+        <div id="update">
+            <h1>update</h1>
+            <form action='/update' method='POST'>
+                <div class="form-group">
+                    <lable class="input-label" for=id>비밀번호를 변경할 id</lable>
+                    <input type="text" class="input" name="id">
+                </div>
+                <div class="form-group">
+                    <lable class="input-label" for=ch_pw>변경할 PW</lable>
+                    <input type="text" class="input" name="ch_pw">
+                </div>
+                <div class="msg">{{ up_data }}</div>
+                <input type="submit" value="변경">
+            </form>
+        </div>
+    </div>
+    <div class="function">
+        <div id="read">
+            <h1>read</h1>
+            <div id="demo"></div>
+
+            <!--form 을 꼭 써야하나? 버튼하나로 만들 수는 없는가?-->
+            <form action='/read' method='POST'>
+                <div clss="msg"> {{ data_list }} </div>
+                <input type="submit" value="읽기">read</input>
+            </form>
+            <button onclick="getElementById('demo').innerHTML = Date()">DATE</button>
+        </div>
+    </div>
+</body>
+</html>
