@@ -20,7 +20,6 @@
                 </div>
                 <div class="msg">{{ msg }}</div>
                 <input type="submit" formaction = '/insert' value="삽입">
-
             </form>
         </div>
     </div>
@@ -64,10 +63,17 @@
             <!--form 을 꼭 써야하나? 버튼하나로 만들 수는 없는가?-->
             <form action='/read' method='POST'>
                 <div clss="msg"> {{ data_list }} </div>
-                <input type="submit" value="읽기">read</input>
+                <input type="submit" value="읽기">
             </form>
             <button onclick="getElementById('demo').innerHTML = Date()">DATE</button>
         </div>
+    </div>
+    <div class="login">
+        <form action='/login_page' method='POST'>
+            <input type="submit" value="로그인 페이지로 이동">
+        </form>
+
+
     </div>
 </body>
 </html>

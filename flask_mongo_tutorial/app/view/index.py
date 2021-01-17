@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, redirect
 from DB import db
 BP = Blueprint('main', __name__, url_prefix='/')
 
@@ -102,3 +102,47 @@ def delete():
     except:
         print("예외처리")
         return render_template('index.html', del_data = "터짐")
+@BP.route('/login_page', methods=['POST', 'GET'])
+def login_page():
+    try:
+        if request.method=='POST':
+            return render_template('login.html')
+        elif request.method=='GET':
+            print("get임")
+    except :
+        print('에러')
+
+@BP.route('/login', methods=['POST', 'GET']) # 꼭 methods=['POST','GET']을 써야하는가?
+def login(): # login.py에서 활성화 시키는 방법?
+    try:
+        if request.method == 'POST':
+            scof_col = db.connect_db_return_scof_col() #db연결
+            id = request.form['id']
+            pw = request.form['pw']
+            print("id = ",id, 'pw = ', pw)
+            if Check_Login(id, pw, scof_col):
+                print("로그인 완료")
+            else:
+                print("로그인 실패")
+            return render_template('login.html')
+        elif request.method=='GET':
+            print("GET")
+    except :
+        print('에러')
+
+def Check_Login(id, pw, scof_col):
+    print('checkLOGIN',id, pw)
+    print("find_id")
+    find = scof_col.find_one({"_id" : id})
+    if find == None:
+        print("존재하지 않는 아이디입니다.")
+        return 0
+    else : 
+        find_pw = find['pw']
+        if pw == find_pw:
+            return 1 # 로그인 완료
+        else :
+            print("비밀번호가 틀렸습니다.")
+            return 0 # 로그인 실패
+
+
